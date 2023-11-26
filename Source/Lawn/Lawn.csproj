@@ -12,4 +12,9 @@
 		<Copyright>Copyright © PopCap Games International 2011</Copyright>
 		<AssemblyVersion>0.13.0.0</AssemblyVersion>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\FNA.NetStub\FNA.NetStub.csproj" />
+	  <ProjectReference Include="..\FNA\FNA.Core.csproj" />
+	</ItemGroup>
 </Project>

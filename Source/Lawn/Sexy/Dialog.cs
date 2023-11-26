@@ -276,12 +276,11 @@ internal class Dialog : Widget, ButtonListener
 		else
 		{
 			int num = 6;
-			Color theDefaultColor = default(Color);
-			((Color)(ref theDefaultColor))._002Ector(GlobalMembersDialog.gDialogColors[num, 0], GlobalMembersDialog.gDialogColors[num, 1], GlobalMembersDialog.gDialogColors[num, 2]);
+			var theDefaultColor = new Color(GlobalMembersDialog.gDialogColors[num, 0], GlobalMembersDialog.gDialogColors[num, 1], GlobalMembersDialog.gDialogColors[num, 2]);
 			g.SetColor(GetColor(DialogColour.COLOR_OUTLINE, theDefaultColor));
 			g.DrawRect(12, 12, mWidth - 24 - 1, mHeight - 24 - 1);
 			num = 5;
-			((Color)(ref theDefaultColor))._002Ector(GlobalMembersDialog.gDialogColors[num, 0], GlobalMembersDialog.gDialogColors[num, 1], GlobalMembersDialog.gDialogColors[num, 2]);
+			theDefaultColor = new(GlobalMembersDialog.gDialogColors[num, 0], GlobalMembersDialog.gDialogColors[num, 1], GlobalMembersDialog.gDialogColors[num, 2]);
 			g.SetColor(GetColor(DialogColour.COLOR_BKG, theDefaultColor));
 			g.FillRect(13, 13, mWidth - 24 - 2, mHeight - 24 - 2);
 			g.SetColor(new Color(0, 0, 0, 128));

@@ -109,13 +109,13 @@ public struct SexyVector2
 
 	public SexyVector2 Normalize()
 	{
-		((Vector2)(ref mVector)).Normalize();
+		mVector.Normalize();
 		return this;
 	}
 
 	public override string ToString()
 	{
-		return ((object)(Vector2)(ref mVector)).ToString();
+		return mVector.ToString();
 	}
 
 	public SexyVector2 Perp()
@@ -125,11 +125,11 @@ public struct SexyVector2
 
 	public override int GetHashCode()
 	{
-		return ((object)(Vector2)(ref mVector)).GetHashCode();
+		return mVector.GetHashCode();
 	}
 
 	public override bool Equals(object obj)
 	{
-		return ((object)(Vector2)(ref mVector)).Equals(obj);
+		return mVector.Equals(obj);
 	}
 }

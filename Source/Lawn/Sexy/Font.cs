@@ -469,9 +469,8 @@ internal class Font
 		{
 			return;
 		}
-		Vector2 val = default(Vector2);
-		((Vector2)(ref val))._002Ector((float)theX, (float)theY);
-		Vector2 val2 = val + mOffsets[layer] * mScaleX * FrameworkConstants.Font_Scale;
+		var val = new Vector2(theX, theY);
+		var val2 = val + mOffsets[layer] * mScaleX * FrameworkConstants.Font_Scale;
 		if (!string.IsNullOrEmpty(theString) && mCharOffsets.ContainsKey(theString[0]))
 		{
 			val2.X -= mCharOffsets[theString[0]].X * mScaleX * FrameworkConstants.Font_Scale;
@@ -512,31 +511,11 @@ internal class Font
 
 	public void DrawString(Graphics g, int theX, int theY, StringBuilder theString, Color theColor)
 	{
-		//IL_0033: Unknown result type (might be due to invalid IL or missing references)
-		//IL_003b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0046: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0050: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0055: Unknown result type (might be due to invalid IL or missing references)
-		//IL_005a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ec: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ed: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00ba: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00c9: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00d4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00de: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e3: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00e8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0108: Unknown result type (might be due to invalid IL or missing references)
-		//IL_010a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0111: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0117: Unknown result type (might be due to invalid IL or missing references)
 		if (theString.Length == 0)
-		{
 			return;
-		}
+
 		g.EndDrawImageTransformed();
-		Vector2 val = default(Vector2);
-		((Vector2)(ref val))._002Ector((float)theX, (float)theY);
+		var val = new Vector2((float)theX, (float)theY);
 		for (int i = 0; i < mFonts.Count; i++)
 		{
 			if (!enabledLayers[i])

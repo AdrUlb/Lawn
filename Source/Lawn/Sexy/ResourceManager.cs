@@ -1362,7 +1362,7 @@ internal class ResourceManager : IDisposable
 				for (int j = 0; j < array2.Length; j++)
 				{
 					ref Bgra4444 reference = ref array2[j];
-					reference = new Bgra4444(((Color)(ref array[j])).ToVector4());
+					reference = new Bgra4444(array[j].ToVector4());
 				}
 				val3.SetData<Bgra4444>(array2);
 				((GraphicsResource)val).Dispose();
@@ -1378,9 +1378,9 @@ internal class ResourceManager : IDisposable
 
 	private void PremultiplyPixel(ref Color c)
 	{
-		((Color)(ref c)).R = (byte)((float)(((Color)(ref c)).R * ((Color)(ref c)).A) / 255f);
-		((Color)(ref c)).G = (byte)((float)(((Color)(ref c)).G * ((Color)(ref c)).A) / 255f);
-		((Color)(ref c)).B = (byte)((float)(((Color)(ref c)).B * ((Color)(ref c)).A) / 255f);
+		c.R = (byte)(c.R * c.A / 255f);
+		c.G = (byte)(c.G * c.A / 255f);
+		c.B = (byte)(c.B * c.A / 255f);
 	}
 
 	private bool DoLoadImage(ImageRes theRes)

@@ -246,18 +246,18 @@ internal class ZombiePileWidget : Widget, ButtonListener
 			num++;
 			switch (num)
 			{
-			case 1:
-				num2 += AtlasResources.IMAGE_PILE_ZOMBIE_PILE_1A.mHeight;
-				break;
-			case 2:
-				num2 += AtlasResources.IMAGE_PILE_ZOMBIE_PILE_2A.mHeight;
-				break;
-			case 3:
-				num2 += AtlasResources.IMAGE_PILE_ZOMBIE_PILE_1B.mHeight;
-				break;
-			case 4:
-				num2 += AtlasResources.IMAGE_PILE_ZOMBIE_PILE_2B.mHeight;
-				break;
+				case 1:
+					num2 += AtlasResources.IMAGE_PILE_ZOMBIE_PILE_1A.mHeight;
+					break;
+				case 2:
+					num2 += AtlasResources.IMAGE_PILE_ZOMBIE_PILE_2A.mHeight;
+					break;
+				case 3:
+					num2 += AtlasResources.IMAGE_PILE_ZOMBIE_PILE_1B.mHeight;
+					break;
+				case 4:
+					num2 += AtlasResources.IMAGE_PILE_ZOMBIE_PILE_2B.mHeight;
+					break;
 			}
 			if (num >= 4)
 			{
@@ -368,15 +368,14 @@ internal class ZombiePileWidget : Widget, ButtonListener
 		_ = Constants.BOARD_HEIGHT;
 		int num = 255;
 		g.SetColorizeImages(colorizeImages: true);
-		Color color = default(Color);
-		((Color)(ref color))._002Ector(255, 255, 255, num);
+		var color = new Color(255, 255, 255, num);
 		g.SetColor(color);
 		int mTransY = g.mTransY;
 		g.mTransY = (int)((float)mTransY * 0.2f);
 		for (int i = 0; i < stars.Length; i++)
 		{
 			g.SetScale(stars[i].size);
-			((Color)(ref color)).A = (byte)(200 + rand.Next(55));
+			color.A = (byte)(200 + rand.Next(55));
 			g.SetColor(color);
 			g.DrawImageCel(AtlasResources.IMAGE_ICE_SPARKLES, stars[i].pos.X, stars[i].pos.Y, stars[i].cel, 0);
 		}
@@ -392,22 +391,22 @@ internal class ZombiePileWidget : Widget, ButtonListener
 			num3++;
 			switch (num3)
 			{
-			case 1:
-				g.DrawImage(AtlasResources.IMAGE_PILE_ZOMBIE_PILE_1A, Constants.Leaderboard_Pile_1_X, num2);
-				num4 = AtlasResources.IMAGE_PILE_ZOMBIE_PILE_1A.mHeight;
-				break;
-			case 2:
-				g.DrawImage(AtlasResources.IMAGE_PILE_ZOMBIE_PILE_2A, Constants.Leaderboard_Pile_1_X, num2);
-				num4 = AtlasResources.IMAGE_PILE_ZOMBIE_PILE_2A.mHeight;
-				break;
-			case 3:
-				g.DrawImage(AtlasResources.IMAGE_PILE_ZOMBIE_PILE_1B, Constants.Leaderboard_Pile_1_X, num2);
-				num4 = AtlasResources.IMAGE_PILE_ZOMBIE_PILE_1B.mHeight;
-				break;
-			case 4:
-				g.DrawImage(AtlasResources.IMAGE_PILE_ZOMBIE_PILE_2B, Constants.Leaderboard_Pile_1_X, num2);
-				num4 = AtlasResources.IMAGE_PILE_ZOMBIE_PILE_2B.mHeight;
-				break;
+				case 1:
+					g.DrawImage(AtlasResources.IMAGE_PILE_ZOMBIE_PILE_1A, Constants.Leaderboard_Pile_1_X, num2);
+					num4 = AtlasResources.IMAGE_PILE_ZOMBIE_PILE_1A.mHeight;
+					break;
+				case 2:
+					g.DrawImage(AtlasResources.IMAGE_PILE_ZOMBIE_PILE_2A, Constants.Leaderboard_Pile_1_X, num2);
+					num4 = AtlasResources.IMAGE_PILE_ZOMBIE_PILE_2A.mHeight;
+					break;
+				case 3:
+					g.DrawImage(AtlasResources.IMAGE_PILE_ZOMBIE_PILE_1B, Constants.Leaderboard_Pile_1_X, num2);
+					num4 = AtlasResources.IMAGE_PILE_ZOMBIE_PILE_1B.mHeight;
+					break;
+				case 4:
+					g.DrawImage(AtlasResources.IMAGE_PILE_ZOMBIE_PILE_2B, Constants.Leaderboard_Pile_1_X, num2);
+					num4 = AtlasResources.IMAGE_PILE_ZOMBIE_PILE_2B.mHeight;
+					break;
 			}
 			if (num3 >= 4)
 			{
@@ -462,36 +461,9 @@ internal class ZombiePileWidget : Widget, ButtonListener
 
 	public void DrawPileObjects(Graphics g)
 	{
-		//IL_0302: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0307: Unknown result type (might be due to invalid IL or missing references)
-		//IL_034a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_034f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0354: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0359: Unknown result type (might be due to invalid IL or missing references)
-		//IL_035e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_043b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_043d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0447: Unknown result type (might be due to invalid IL or missing references)
-		//IL_044c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0458: Unknown result type (might be due to invalid IL or missing references)
-		//IL_045d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0467: Unknown result type (might be due to invalid IL or missing references)
-		//IL_046c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0471: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0473: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0478: Unknown result type (might be due to invalid IL or missing references)
-		//IL_047d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0482: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0484: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0489: Unknown result type (might be due to invalid IL or missing references)
-		//IL_048e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04a2: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04a5: Unknown result type (might be due to invalid IL or missing references)
-		//IL_04ab: Unknown result type (might be due to invalid IL or missing references)
 		int mTransY = g.mTransY;
 		g.mTransY = (int)((float)mTransY * 0.4f);
-		Vector3 val = default(Vector3);
-		Vector3 val2 = default(Vector3);
+
 		for (int i = 0; i < gPileObjects.Length; i++)
 		{
 			ZombiePileObject zombiePileObject = gPileObjects[i];
@@ -499,65 +471,65 @@ internal class ZombiePileWidget : Widget, ButtonListener
 			{
 				switch (zombiePileObject.mType)
 				{
-				case ZombiePileObjectType.OBJECT_ARROW:
-					g.DrawImageRotatedScaled(AtlasResources.IMAGE_DOWNARROW, 160f, zombiePileObject.mY + (int)zombiePileObject.mOffsetY + mTransY + 50, Math.PI, AtlasResources.IMAGE_DOWNARROW.mWidth / 2, AtlasResources.IMAGE_DOWNARROW.mHeight / 2, new TRect(0, 0, AtlasResources.IMAGE_DOWNARROW.mWidth, AtlasResources.IMAGE_DOWNARROW.mHeight), 10, 10);
-					break;
-				case ZombiePileObjectType.OBJECT_BALLOON:
-					g.DrawImage(AtlasResources.IMAGE_PILE_BALLOON, 40f, (float)zombiePileObject.mY + zombiePileObject.mOffsetY);
-					break;
-				case ZombiePileObjectType.OBJECT_YELLOW_CLOUD:
-					g.DrawImage(AtlasResources.IMAGE_PILE_YELLOW_CLOUD, (int)zombiePileObject.mOffsetX, zombiePileObject.mY + (int)zombiePileObject.mOffsetY, AtlasResources.IMAGE_PILE_YELLOW_CLOUD.mWidth, AtlasResources.IMAGE_PILE_YELLOW_CLOUD.mHeight);
-					break;
-				case ZombiePileObjectType.OBJECT_AIRPLANE:
-					g.DrawImage(AtlasResources.IMAGE_PILE_AIRPLANE, zombiePileObject.mOffsetX, (float)zombiePileObject.mY + zombiePileObject.mOffsetY);
-					break;
-				case ZombiePileObjectType.OBJECT_MOON:
-					g.DrawImage(AtlasResources.IMAGE_PILE_MOON, 40, zombiePileObject.mY);
-					break;
-				case ZombiePileObjectType.OBJECT_SATELLITE:
-					g.DrawImage(AtlasResources.IMAGE_PILE_SATELLITE, zombiePileObject.mOffsetX, (float)zombiePileObject.mY + zombiePileObject.mOffsetY);
-					break;
-				case ZombiePileObjectType.OBJECT_PEGGLE_URSAMAJOR:
-					g.DrawImage(AtlasResources.IMAGE_PILE_PEGGLE_URSAMAJOR, 30, zombiePileObject.mY);
-					break;
-				case ZombiePileObjectType.OBJECT_GEM0:
-				case ZombiePileObjectType.OBJECT_GEM1:
-				case ZombiePileObjectType.OBJECT_GEM2:
-				case ZombiePileObjectType.OBJECT_GEM3:
-				case ZombiePileObjectType.OBJECT_GEM4:
-				case ZombiePileObjectType.OBJECT_GEM5:
-				case ZombiePileObjectType.OBJECT_GEM6:
-				{
-					float num2 = Math.Abs(zombiePileObject.gemSpeedX / 5f);
-					num2 = 1f / num2;
-					g.DrawImageRotatedScaled(zombiePileObject.gemImage, (int)zombiePileObject.mOffsetX + g.mTransX, zombiePileObject.mY + (int)zombiePileObject.mOffsetY + g.mTransY, zombiePileObject.mCounter, (int)((float)zombiePileObject.gemImage.mWidth / num2), (int)((float)zombiePileObject.gemImage.mHeight / num2), new TRect(0, 0, zombiePileObject.gemImage.mWidth, zombiePileObject.gemImage.mHeight), (int)(num2 * (float)zombiePileObject.gemImage.mWidth), (int)(num2 * (float)zombiePileObject.gemImage.mHeight));
-					break;
-				}
-				case ZombiePileObjectType.OBJECT_ASTRONAUT:
-				{
-					Graphics @new = Graphics.GetNew(g);
-					@new.mTransX += (int)zombiePileObject.mOffsetX;
-					@new.mTransY += zombiePileObject.mY + (int)zombiePileObject.mOffsetY;
-					zombiePileObject.mReanim.Draw(@new);
-					@new.PrepareForReuse();
-					break;
-				}
-				case ZombiePileObjectType.OBJECT_BLACKHOLE:
-				{
-					Matrix identity = Matrix.Identity;
-					new TRect(0, 0, Resources.IMAGE_BLACKHOLE.mWidth, Resources.IMAGE_BLACKHOLE.mHeight);
-					int num = (int)((float)g.mTransY / 0.4f * 1.6f);
-					blackHoleView = Matrix.CreateLookAt(new Vector3(0f, (float)(-num), -1000f), Vector3.Zero, Vector3.UnitY);
-					blackHoleVerts[0].Position.Y = (float)(-Resources.IMAGE_BLACKHOLE.mHeight) / 4f - (float)num;
-					blackHoleVerts[1].Position.Y = (float)(-Resources.IMAGE_BLACKHOLE.mHeight) / 4f - (float)num;
-					blackHoleVerts[2].Position.Y = (float)Resources.IMAGE_BLACKHOLE.mHeight / 4f - (float)num;
-					blackHoleVerts[3].Position.Y = (float)Resources.IMAGE_BLACKHOLE.mHeight / 4f - (float)num;
-					((Vector3)(ref val))._002Ector(0f, (float)num, 0f);
-					((Vector3)(ref val2))._002Ector(-60f, 80f, 0f);
-					identity = Matrix.CreateTranslation(val) * Matrix.CreateScale(4f) * Matrix.CreateRotationZ(zombiePileObject.mCounter) * Matrix.CreateRotationX(-0.85f) * Matrix.CreateTranslation(-val) * Matrix.CreateTranslation(val2);
-					g.DrawImageWithBasicEffect(Resources.IMAGE_BLACKHOLE, blackHoleVerts, blackHoleIndices, identity, blackHoleView, blackHoleProjection);
-					break;
-				}
+					case ZombiePileObjectType.OBJECT_ARROW:
+						g.DrawImageRotatedScaled(AtlasResources.IMAGE_DOWNARROW, 160f, zombiePileObject.mY + (int)zombiePileObject.mOffsetY + mTransY + 50, Math.PI, AtlasResources.IMAGE_DOWNARROW.mWidth / 2, AtlasResources.IMAGE_DOWNARROW.mHeight / 2, new TRect(0, 0, AtlasResources.IMAGE_DOWNARROW.mWidth, AtlasResources.IMAGE_DOWNARROW.mHeight), 10, 10);
+						break;
+					case ZombiePileObjectType.OBJECT_BALLOON:
+						g.DrawImage(AtlasResources.IMAGE_PILE_BALLOON, 40f, (float)zombiePileObject.mY + zombiePileObject.mOffsetY);
+						break;
+					case ZombiePileObjectType.OBJECT_YELLOW_CLOUD:
+						g.DrawImage(AtlasResources.IMAGE_PILE_YELLOW_CLOUD, (int)zombiePileObject.mOffsetX, zombiePileObject.mY + (int)zombiePileObject.mOffsetY, AtlasResources.IMAGE_PILE_YELLOW_CLOUD.mWidth, AtlasResources.IMAGE_PILE_YELLOW_CLOUD.mHeight);
+						break;
+					case ZombiePileObjectType.OBJECT_AIRPLANE:
+						g.DrawImage(AtlasResources.IMAGE_PILE_AIRPLANE, zombiePileObject.mOffsetX, (float)zombiePileObject.mY + zombiePileObject.mOffsetY);
+						break;
+					case ZombiePileObjectType.OBJECT_MOON:
+						g.DrawImage(AtlasResources.IMAGE_PILE_MOON, 40, zombiePileObject.mY);
+						break;
+					case ZombiePileObjectType.OBJECT_SATELLITE:
+						g.DrawImage(AtlasResources.IMAGE_PILE_SATELLITE, zombiePileObject.mOffsetX, (float)zombiePileObject.mY + zombiePileObject.mOffsetY);
+						break;
+					case ZombiePileObjectType.OBJECT_PEGGLE_URSAMAJOR:
+						g.DrawImage(AtlasResources.IMAGE_PILE_PEGGLE_URSAMAJOR, 30, zombiePileObject.mY);
+						break;
+					case ZombiePileObjectType.OBJECT_GEM0:
+					case ZombiePileObjectType.OBJECT_GEM1:
+					case ZombiePileObjectType.OBJECT_GEM2:
+					case ZombiePileObjectType.OBJECT_GEM3:
+					case ZombiePileObjectType.OBJECT_GEM4:
+					case ZombiePileObjectType.OBJECT_GEM5:
+					case ZombiePileObjectType.OBJECT_GEM6:
+						{
+							float num2 = Math.Abs(zombiePileObject.gemSpeedX / 5f);
+							num2 = 1f / num2;
+							g.DrawImageRotatedScaled(zombiePileObject.gemImage, (int)zombiePileObject.mOffsetX + g.mTransX, zombiePileObject.mY + (int)zombiePileObject.mOffsetY + g.mTransY, zombiePileObject.mCounter, (int)((float)zombiePileObject.gemImage.mWidth / num2), (int)((float)zombiePileObject.gemImage.mHeight / num2), new TRect(0, 0, zombiePileObject.gemImage.mWidth, zombiePileObject.gemImage.mHeight), (int)(num2 * (float)zombiePileObject.gemImage.mWidth), (int)(num2 * (float)zombiePileObject.gemImage.mHeight));
+							break;
+						}
+					case ZombiePileObjectType.OBJECT_ASTRONAUT:
+						{
+							Graphics @new = Graphics.GetNew(g);
+							@new.mTransX += (int)zombiePileObject.mOffsetX;
+							@new.mTransY += zombiePileObject.mY + (int)zombiePileObject.mOffsetY;
+							zombiePileObject.mReanim.Draw(@new);
+							@new.PrepareForReuse();
+							break;
+						}
+					case ZombiePileObjectType.OBJECT_BLACKHOLE:
+						{
+							Matrix identity = Matrix.Identity;
+							new TRect(0, 0, Resources.IMAGE_BLACKHOLE.mWidth, Resources.IMAGE_BLACKHOLE.mHeight);
+							int num = (int)((float)g.mTransY / 0.4f * 1.6f);
+							blackHoleView = Matrix.CreateLookAt(new Vector3(0f, (float)(-num), -1000f), Vector3.Zero, Vector3.UnitY);
+							blackHoleVerts[0].Position.Y = (float)(-Resources.IMAGE_BLACKHOLE.mHeight) / 4f - (float)num;
+							blackHoleVerts[1].Position.Y = (float)(-Resources.IMAGE_BLACKHOLE.mHeight) / 4f - (float)num;
+							blackHoleVerts[2].Position.Y = (float)Resources.IMAGE_BLACKHOLE.mHeight / 4f - (float)num;
+							blackHoleVerts[3].Position.Y = (float)Resources.IMAGE_BLACKHOLE.mHeight / 4f - (float)num;
+							var val = new Vector3(0f, (float)num, 0f);
+							var val2 = new Vector3(-60f, 80f, 0f);
+							identity = Matrix.CreateTranslation(val) * Matrix.CreateScale(4f) * Matrix.CreateRotationZ(zombiePileObject.mCounter) * Matrix.CreateRotationX(-0.85f) * Matrix.CreateTranslation(-val) * Matrix.CreateTranslation(val2);
+							g.DrawImageWithBasicEffect(Resources.IMAGE_BLACKHOLE, blackHoleVerts, blackHoleIndices, identity, blackHoleView, blackHoleProjection);
+							break;
+						}
 				}
 			}
 		}
@@ -575,99 +547,99 @@ internal class ZombiePileWidget : Widget, ButtonListener
 			}
 			switch (zombiePileObject.mType)
 			{
-			case ZombiePileObjectType.OBJECT_ARROW:
-				zombiePileObject.mCounter += 0.1f;
-				if ((double)zombiePileObject.mCounter > Math.PI * 2.0)
-				{
-					zombiePileObject.mCounter -= (float)Math.PI * 2f;
-				}
-				zombiePileObject.mOffsetY = (int)(Math.Sin(zombiePileObject.mCounter) * 10.0);
-				break;
-			case ZombiePileObjectType.OBJECT_BALLOON:
-				zombiePileObject.mCounter += 0.1f;
-				if ((double)zombiePileObject.mCounter > Math.PI * 2.0)
-				{
-					zombiePileObject.mCounter -= (float)Math.PI * 2f;
-				}
-				zombiePileObject.mOffsetY = (int)(Math.Sin(zombiePileObject.mCounter) * 5.0);
-				break;
-			case ZombiePileObjectType.OBJECT_YELLOW_CLOUD:
-				zombiePileObject.mCounter -= 1f;
-				zombiePileObject.mOffsetX = (int)zombiePileObject.mCounter;
-				if (zombiePileObject.mOffsetX < (float)(-AtlasResources.IMAGE_PILE_YELLOW_CLOUD.mWidth))
-				{
-					zombiePileObject.mCounter = Constants.BOARD_WIDTH;
-					zombiePileObject.mOffsetX = (int)zombiePileObject.mCounter;
-				}
-				break;
-			case ZombiePileObjectType.OBJECT_AIRPLANE:
-				zombiePileObject.mOffsetX += 6f;
-				zombiePileObject.mOffsetY += zombiePileObject.mCounter;
-				zombiePileObject.mCounter -= 0.01f * zombiePileObject.mCounter;
-				if (zombiePileObject.mOffsetX > (float)Constants.BOARD_WIDTH)
-				{
-					zombiePileObject.mOffsetX = -2 * AtlasResources.IMAGE_PILE_AIRPLANE.mWidth;
-					zombiePileObject.mOffsetY = -100f;
-					zombiePileObject.mCounter = 3f;
-				}
-				break;
-			case ZombiePileObjectType.OBJECT_SATELLITE:
-				zombiePileObject.mOffsetX -= 9f;
-				zombiePileObject.mOffsetY += 1f;
-				if (zombiePileObject.mOffsetX < (float)(-AtlasResources.IMAGE_PILE_SATELLITE.mWidth))
-				{
-					zombiePileObject.mOffsetX = Constants.BOARD_WIDTH + AtlasResources.IMAGE_PILE_SATELLITE.mWidth;
-					zombiePileObject.mOffsetY = -50f;
-				}
-				break;
-			case ZombiePileObjectType.OBJECT_GEM0:
-			case ZombiePileObjectType.OBJECT_GEM1:
-			case ZombiePileObjectType.OBJECT_GEM2:
-			case ZombiePileObjectType.OBJECT_GEM3:
-			case ZombiePileObjectType.OBJECT_GEM4:
-			case ZombiePileObjectType.OBJECT_GEM5:
-			case ZombiePileObjectType.OBJECT_GEM6:
-				zombiePileObject.mOffsetX += zombiePileObject.gemSpeedX;
-				zombiePileObject.mCounter += zombiePileObject.gemRotationSpeed;
-				zombiePileObject.mOffsetY += zombiePileObject.gemSpeedY;
-				if (zombiePileObject.gemSpeedX > 0f)
-				{
-					if (zombiePileObject.mOffsetX > (float)(Constants.BOARD_WIDTH + 200))
+				case ZombiePileObjectType.OBJECT_ARROW:
+					zombiePileObject.mCounter += 0.1f;
+					if ((double)zombiePileObject.mCounter > Math.PI * 2.0)
 					{
-						zombiePileObject.mOffsetX = -zombiePileObject.gemImage.mWidth - 100;
+						zombiePileObject.mCounter -= (float)Math.PI * 2f;
+					}
+					zombiePileObject.mOffsetY = (int)(Math.Sin(zombiePileObject.mCounter) * 10.0);
+					break;
+				case ZombiePileObjectType.OBJECT_BALLOON:
+					zombiePileObject.mCounter += 0.1f;
+					if ((double)zombiePileObject.mCounter > Math.PI * 2.0)
+					{
+						zombiePileObject.mCounter -= (float)Math.PI * 2f;
+					}
+					zombiePileObject.mOffsetY = (int)(Math.Sin(zombiePileObject.mCounter) * 5.0);
+					break;
+				case ZombiePileObjectType.OBJECT_YELLOW_CLOUD:
+					zombiePileObject.mCounter -= 1f;
+					zombiePileObject.mOffsetX = (int)zombiePileObject.mCounter;
+					if (zombiePileObject.mOffsetX < (float)(-AtlasResources.IMAGE_PILE_YELLOW_CLOUD.mWidth))
+					{
+						zombiePileObject.mCounter = Constants.BOARD_WIDTH;
+						zombiePileObject.mOffsetX = (int)zombiePileObject.mCounter;
+					}
+					break;
+				case ZombiePileObjectType.OBJECT_AIRPLANE:
+					zombiePileObject.mOffsetX += 6f;
+					zombiePileObject.mOffsetY += zombiePileObject.mCounter;
+					zombiePileObject.mCounter -= 0.01f * zombiePileObject.mCounter;
+					if (zombiePileObject.mOffsetX > (float)Constants.BOARD_WIDTH)
+					{
+						zombiePileObject.mOffsetX = -2 * AtlasResources.IMAGE_PILE_AIRPLANE.mWidth;
+						zombiePileObject.mOffsetY = -100f;
+						zombiePileObject.mCounter = 3f;
+					}
+					break;
+				case ZombiePileObjectType.OBJECT_SATELLITE:
+					zombiePileObject.mOffsetX -= 9f;
+					zombiePileObject.mOffsetY += 1f;
+					if (zombiePileObject.mOffsetX < (float)(-AtlasResources.IMAGE_PILE_SATELLITE.mWidth))
+					{
+						zombiePileObject.mOffsetX = Constants.BOARD_WIDTH + AtlasResources.IMAGE_PILE_SATELLITE.mWidth;
+						zombiePileObject.mOffsetY = -50f;
+					}
+					break;
+				case ZombiePileObjectType.OBJECT_GEM0:
+				case ZombiePileObjectType.OBJECT_GEM1:
+				case ZombiePileObjectType.OBJECT_GEM2:
+				case ZombiePileObjectType.OBJECT_GEM3:
+				case ZombiePileObjectType.OBJECT_GEM4:
+				case ZombiePileObjectType.OBJECT_GEM5:
+				case ZombiePileObjectType.OBJECT_GEM6:
+					zombiePileObject.mOffsetX += zombiePileObject.gemSpeedX;
+					zombiePileObject.mCounter += zombiePileObject.gemRotationSpeed;
+					zombiePileObject.mOffsetY += zombiePileObject.gemSpeedY;
+					if (zombiePileObject.gemSpeedX > 0f)
+					{
+						if (zombiePileObject.mOffsetX > (float)(Constants.BOARD_WIDTH + 200))
+						{
+							zombiePileObject.mOffsetX = -zombiePileObject.gemImage.mWidth - 100;
+							zombiePileObject.mOffsetY = 50f;
+							zombiePileObject.mCounter = 0f;
+						}
+					}
+					else if (zombiePileObject.mOffsetX < (float)(-zombiePileObject.gemImage.mWidth))
+					{
+						zombiePileObject.mOffsetX = Constants.BOARD_WIDTH + 200;
 						zombiePileObject.mOffsetY = 50f;
 						zombiePileObject.mCounter = 0f;
 					}
-				}
-				else if (zombiePileObject.mOffsetX < (float)(-zombiePileObject.gemImage.mWidth))
-				{
-					zombiePileObject.mOffsetX = Constants.BOARD_WIDTH + 200;
-					zombiePileObject.mOffsetY = 50f;
-					zombiePileObject.mCounter = 0f;
-				}
-				break;
-			case ZombiePileObjectType.OBJECT_ASTRONAUT:
-				zombiePileObject.mReanim.Update();
-				zombiePileObject.mCounter += 0.025f;
-				if ((double)zombiePileObject.mCounter > Math.PI * 2.0)
-				{
-					zombiePileObject.mCounter -= (float)Math.PI * 2f;
-				}
-				zombiePileObject.mOffsetY = -(int)(Math.Sin(zombiePileObject.mCounter) * 80.0);
-				zombiePileObject.mOffsetX -= 6f;
-				if (zombiePileObject.mReanim.mLastFrameTime > 0.95f)
-				{
-					zombiePileObject.mOffsetX = 600f;
-					zombiePileObject.mCounter = 0f;
-				}
-				break;
-			case ZombiePileObjectType.OBJECT_BLACKHOLE:
-				zombiePileObject.mCounter += 0.05f;
-				if ((double)zombiePileObject.mCounter > Math.PI * 2.0)
-				{
-					zombiePileObject.mCounter -= (float)Math.PI * 2f;
-				}
-				break;
+					break;
+				case ZombiePileObjectType.OBJECT_ASTRONAUT:
+					zombiePileObject.mReanim.Update();
+					zombiePileObject.mCounter += 0.025f;
+					if ((double)zombiePileObject.mCounter > Math.PI * 2.0)
+					{
+						zombiePileObject.mCounter -= (float)Math.PI * 2f;
+					}
+					zombiePileObject.mOffsetY = -(int)(Math.Sin(zombiePileObject.mCounter) * 80.0);
+					zombiePileObject.mOffsetX -= 6f;
+					if (zombiePileObject.mReanim.mLastFrameTime > 0.95f)
+					{
+						zombiePileObject.mOffsetX = 600f;
+						zombiePileObject.mCounter = 0f;
+					}
+					break;
+				case ZombiePileObjectType.OBJECT_BLACKHOLE:
+					zombiePileObject.mCounter += 0.05f;
+					if ((double)zombiePileObject.mCounter > Math.PI * 2.0)
+					{
+						zombiePileObject.mCounter -= (float)Math.PI * 2f;
+					}
+					break;
 			}
 			gPileObjects[i] = zombiePileObject;
 		}
@@ -682,19 +654,19 @@ internal class ZombiePileWidget : Widget, ButtonListener
 	{
 		switch (theId)
 		{
-		case 0:
-			mApp.KillLeaderboardScreen();
-			mApp.DoBackToMain(stopMusic: false);
-			break;
-		case 4:
-			ShowLeaderboard(LeaderBoardType.LEADERBOARD_TYPE_IZOMBIE);
-			break;
-		case 3:
-			ShowLeaderboard(LeaderBoardType.LEADERBOARD_TYPE_VASEBREAKER);
-			break;
-		case 5:
-			ShowLeaderboard(LeaderBoardType.LEADERBOARD_TYPE_KILLED);
-			break;
+			case 0:
+				mApp.KillLeaderboardScreen();
+				mApp.DoBackToMain(stopMusic: false);
+				break;
+			case 4:
+				ShowLeaderboard(LeaderBoardType.LEADERBOARD_TYPE_IZOMBIE);
+				break;
+			case 3:
+				ShowLeaderboard(LeaderBoardType.LEADERBOARD_TYPE_VASEBREAKER);
+				break;
+			case 5:
+				ShowLeaderboard(LeaderBoardType.LEADERBOARD_TYPE_KILLED);
+				break;
 		}
 	}
 

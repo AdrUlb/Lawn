@@ -80,8 +80,6 @@ public struct CGPoint
 
 	public CGPoint(float x, float y)
 	{
-		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
 		mVector = new Vector2(x, y);
 	}
 
@@ -102,6 +100,6 @@ public struct CGPoint
 
 	public override string ToString()
 	{
-		return ((object)(Vector2)(ref mVector)).ToString();
+		return mVector.ToString();
 	}
 }

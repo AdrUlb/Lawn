@@ -72,13 +72,10 @@ public struct TRect : IEquatable<TRect>
 		}
 	}
 
-	public bool IsEmpty => ((Rectangle)(ref mRect)).IsEmpty;
+	public bool IsEmpty => mRect.IsEmpty;
 
 	public TRect(int theX, int theY, int theWidth, int theHeight)
 	{
-		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
 		mRect = new Rectangle
 		{
 			X = theX,
@@ -90,15 +87,12 @@ public struct TRect : IEquatable<TRect>
 
 	public TRect(TRect theTRect)
 	{
-		//IL_0003: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
 		mRect = theTRect.mRect;
 	}
 
 	public bool Intersects(TRect theTRect)
 	{
-		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
-		return ((Rectangle)(ref mRect)).Intersects(theTRect.mRect);
+		return mRect.Intersects(theTRect.mRect);
 	}
 
 	public TRect Intersection(TRect theTRect)
@@ -125,57 +119,50 @@ public struct TRect : IEquatable<TRect>
 
 	public bool Contains(int theX, int theY)
 	{
-		return ((Rectangle)(ref mRect)).Contains(theX, theY);
+		return mRect.Contains(theX, theY);
 	}
 
 	public bool Contains(TPoint thePoint)
 	{
 		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
-		return ((Rectangle)(ref mRect)).Contains(thePoint.Point);
+		return mRect.Contains(thePoint.Point);
 	}
 
 	public void Offset(int theX, int theY)
 	{
-		((Rectangle)(ref mRect)).Offset(theX, theY);
+		mRect.Offset(theX, theY);
 	}
 
 	public void Offset(TPoint thePoint)
 	{
 		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
-		((Rectangle)(ref mRect)).Offset(thePoint.Point);
+		mRect.Offset(thePoint.Point);
 	}
 
 	public TRect Inflate(int theX, int theY)
 	{
-		((Rectangle)(ref mRect)).Inflate(theX, theY);
+		mRect.Inflate(theX, theY);
 		return this;
 	}
 
 	public static bool operator ==(TRect a, TRect b)
 	{
-		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
-		return ((Rectangle)(ref a.mRect)).Equals(b.mRect);
+		return a.mRect.Equals(b.mRect);
 	}
 
 	public override bool Equals(object obj)
 	{
-		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
-		if (!(obj is TRect tRect))
-		{
-			return false;
-		}
-		return mRect == tRect.mRect;
+		return obj is TRect tRect && mRect == tRect.mRect;
 	}
 
 	public override int GetHashCode()
 	{
-		return ((object)(Rectangle)(ref mRect)).GetHashCode();
+		return mRect.GetHashCode();
 	}
 
 	public override string ToString()
 	{
-		return ((object)(Rectangle)(ref mRect)).ToString();
+		return mRect.ToString();
 	}
 
 	public static bool operator !=(TRect a, TRect b)

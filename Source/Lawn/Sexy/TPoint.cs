@@ -113,7 +113,7 @@ public struct TPoint
 
 	public override int GetHashCode()
 	{
-		return ((object)(Point)(ref mPoint)).GetHashCode();
+		return mPoint.GetHashCode();
 	}
 
 	public static TPoint operator +(TPoint a, TPoint b)
@@ -148,20 +148,20 @@ public struct TPoint
 
 	public static explicit operator TPoint(Point point)
 	{
-		//IL_000a: Unknown result type (might be due to invalid IL or missing references)
-		TPoint result = default(TPoint);
-		result.Point = point;
+		var result = new TPoint
+		{
+			Point = point
+		};
 		return result;
 	}
 
 	public static implicit operator Point(TPoint aPoint)
 	{
-		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
 		return aPoint.Point;
 	}
 
 	public override string ToString()
 	{
-		return ((object)(Point)(ref mPoint)).ToString();
+		return mPoint.ToString();
 	}
 }

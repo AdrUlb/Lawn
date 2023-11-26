@@ -403,10 +403,7 @@ internal class Graphics : GraphicsState
 
 	public static void PremultiplyColour(ref Color c)
 	{
-		//IL_0010: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
-		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
-		float num = (float)(int)((Color)(ref c)).A / 255f;
+		float num = c.A / 255f;
 		c *= num;
 	}
 
@@ -420,31 +417,25 @@ internal class Graphics : GraphicsState
 
 	public void SetColor(Color theColor)
 	{
-		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
 		SetColor(theColor, premultiply: true);
 	}
 
 	public void SetColor(Color theColor, bool premultiply)
 	{
-		//IL_001d: Unknown result type (might be due to invalid IL or missing references)
 		if (mDrawMode == DrawMode.DRAWMODE_NORMAL)
 		{
 			if (premultiply)
-			{
 				PremultiplyColour(ref theColor);
-			}
 		}
 		else
-		{
-			((Color)(ref theColor)).A = 0;
-		}
-		base.mColor = theColor;
+			theColor.A = 0;
+
+		mColor = theColor;
 	}
 
 	public Color GetColor()
 	{
-		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
-		return base.mColor;
+		return mColor;
 	}
 
 	public void SetDrawMode(DrawMode theDrawMode)
@@ -551,10 +542,8 @@ internal class Graphics : GraphicsState
 
 	public void DrawRect(int theX, int theY, int theWidth, int theHeight)
 	{
-		//IL_0001: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0006: Unknown result type (might be due to invalid IL or missing references)
-		Color val = base.mColor;
-		if (((Color)(ref val)).A != 0)
+		Color val = mColor;
+		if (val.A != 0)
 		{
 			FillRect(theX, theY, theWidth + 1, 1);
 			FillRect(theX, theY + theHeight, theWidth + 1, 1);
@@ -632,14 +621,8 @@ internal class Graphics : GraphicsState
 
 	public void PolyFill(TPoint[] theVertexList, int theNumVertices)
 	{
-		//IL_0038: Unknown result type (might be due to invalid IL or missing references)
-		//IL_003a: Unknown result type (might be due to invalid IL or missing references)
-		Vector2 vertex = default(Vector2);
 		for (int i = 0; i < theNumVertices; i++)
-		{
-			((Vector2)(ref vertex))._002Ector((float)(theVertexList[i].mX + mTransX), (float)(theVertexList[i].mY + mTransY));
-			primitiveBatch.AddVertex(vertex, base.mColor);
-		}
+			primitiveBatch.AddVertex(new((float)(theVertexList[i].mX + mTransX), (float)(theVertexList[i].mY + mTransY)), base.mColor);
 	}
 
 	private void PrepareRectsForClipping(ref TRect source, ref TRect destination)
@@ -648,16 +631,15 @@ internal class Graphics : GraphicsState
 		destination.mY += (int)(mScaleOrigY * (float)destination.mHeight * ((1f - mScaleY) / 2f));
 		destination.mWidth = (int)((float)destination.mWidth * mScaleX);
 		destination.mHeight = (int)((float)destination.mHeight * mScaleY);
-		Vector2 val = default(Vector2);
-		((Vector2)(ref val))._002Ector((float)destination.mWidth / (float)((source.mWidth != 0) ? source.mWidth : destination.mWidth), (float)destination.mHeight / (float)((source.mHeight != 0) ? source.mHeight : destination.mHeight));
+
+		var val = new Vector2((float)destination.mWidth / (float)((source.mWidth != 0) ? source.mWidth : destination.mWidth), (float)destination.mHeight / (float)((source.mHeight != 0) ? source.mHeight : destination.mHeight));
+
 		if (val.X == 0f)
-		{
 			val.X = 1f;
-		}
+
 		if (val.Y == 0f)
-		{
 			val.Y = 1f;
-		}
+
 		int num = Math.Max(0, (int)((float)(mClipRect.mX - destination.mX) / val.X));
 		int num2 = Math.Max(0, (int)((float)(mClipRect.mY - destination.mY) / val.Y));
 		source.mX += num;
@@ -754,26 +736,17 @@ internal class Graphics : GraphicsState
 
 	public void DrawImageTransformed(Image theImage, ref Matrix theTransform, bool center, Color theColor, TRect theSrcRect, bool clip)
 	{
-		//IL_004e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0053: Unknown result type (might be due to invalid IL or missing references)
-		//IL_006e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_006f: Unknown result type (might be due to invalid IL or missing references)
 		BeginPrimitiveBatch(theImage);
 		TRect destination = new TRect(-mTransX, -mTransY, theImage.GetCelWidth(), theImage.GetCelHeight());
-		Vector2 center2 = (Vector2)(center ? new Vector2((float)theSrcRect.mWidth * 0.5f, (float)theSrcRect.mHeight * 0.5f) : Vector2.Zero);
+		var center2 = center ? new Vector2(theSrcRect.mWidth * 0.5f, theSrcRect.mHeight * 0.5f) : Vector2.Zero;
 		if (add)
-		{
-			((Color)(ref theColor)).A = 0;
-		}
+			theColor.A = 0;
+
 		primitiveBatch.Draw(theImage, destination, theSrcRect, ref theTransform, center2, theColor, extraOffset: false, sourceOffsetsUsed: true);
 	}
 
 	public void DrawImageRotatedScaled(Image theImage, TRect dest, TRect src, Color col, float rotation, Vector2 scale, Vector2 origin)
 	{
-		//IL_000f: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0013: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
 		BeginPrimitiveBatch(theImage);
 		primitiveBatch.DrawRotatedScaled(theImage, dest, src, origin, rotation, scale, col, extraOffset: false, sourceOffsetsUsed: false, PrimitiveBatchEffects.None);
 	}
@@ -785,8 +758,6 @@ internal class Graphics : GraphicsState
 
 	public void DrawImage(Image theImage, int theX, int theY)
 	{
-		//IL_008b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0083: Unknown result type (might be due to invalid IL or missing references)
 		BeginPrimitiveBatch(theImage);
 		TRect source = new TRect(theImage.mS, theImage.mT, theImage.mWidth, theImage.mHeight);
 		TRect destination = new TRect(theX + mTransX, theY + mTransY, source.mWidth, source.mHeight);
@@ -1197,20 +1168,17 @@ internal class Graphics : GraphicsState
 
 	public int WriteWordWrappedLayer(TRect theRect, string theLine, int theLineSpacing, int theJustification, int theMaxWidth, int theMaxChars, int theLastWidth, int theLineCount, int layer, bool centerVertically)
 	{
-		//IL_0121: Unknown result type (might be due to invalid IL or missing references)
 		Font.CachedStringInfo wordWrappedSubStrings = mFont.GetWordWrappedSubStrings(theLine, theRect);
 		theRect.mX += mTransX;
 		theRect.mY += mTransY;
-		Vector2 val = default(Vector2);
-		((Vector2)(ref val))._002Ector((float)theRect.mX, (float)theRect.mY);
+		var val = new Vector2((float)theRect.mX, (float)theRect.mY);
 		mFont.GetHeight();
 		if (centerVertically)
 		{
 			float num = 0f;
-			for (int i = 0; i < wordWrappedSubStrings.Strings.Length; i++)
-			{
+			for (var i = 0; i < wordWrappedSubStrings.Strings.Length; i++)
 				num += wordWrappedSubStrings.StringDimensions[i].Y;
-			}
+
 			val.Y += (float)(theRect.mHeight / 2) - num / 2f;
 		}
 		for (int j = 0; j < wordWrappedSubStrings.Strings.Length; j++)
@@ -1248,20 +1216,17 @@ internal class Graphics : GraphicsState
 
 	public int WriteWordWrapped(TRect theRect, string theLine, int theLineSpacing, int theJustification, int theMaxWidth, int theMaxChars, int theLastWidth, int theLineCount, bool centerVertically, bool doDraw)
 	{
-		//IL_0125: Unknown result type (might be due to invalid IL or missing references)
 		Font.CachedStringInfo wordWrappedSubStrings = mFont.GetWordWrappedSubStrings(theLine, theRect);
 		theRect.mX += mTransX;
 		theRect.mY += mTransY;
-		Vector2 val = default(Vector2);
-		((Vector2)(ref val))._002Ector((float)theRect.mX, (float)theRect.mY);
+		var val = new Vector2((float)theRect.mX, (float)theRect.mY);
 		mFont.GetHeight();
 		if (centerVertically)
 		{
 			float num = 0f;
-			for (int i = 0; i < wordWrappedSubStrings.Strings.Length; i++)
-			{
+			for (var i = 0; i < wordWrappedSubStrings.Strings.Length; i++)
 				num += wordWrappedSubStrings.StringDimensions[i].Y;
-			}
+
 			val.Y += (float)(theRect.mHeight / 2) - num / 2f;
 		}
 		for (int j = 0; j < wordWrappedSubStrings.Strings.Length; j++)
@@ -1339,11 +1304,6 @@ internal class Graphics : GraphicsState
 
 	public void Reset()
 	{
-		//IL_0058: Unknown result type (might be due to invalid IL or missing references)
-		//IL_005d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_006b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0070: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0089: Unknown result type (might be due to invalid IL or missing references)
 		mTransX = 0;
 		mTransY = 0;
 		mScaleX = 1f;
@@ -1353,12 +1313,9 @@ internal class Graphics : GraphicsState
 		mFastStretch = false;
 		mWriteColoredString = false;
 		mLinearBlend = false;
-		Viewport viewport = GraphicsDevice.Viewport;
-		int width = ((Viewport)(ref viewport)).Width;
-		Viewport viewport2 = GraphicsDevice.Viewport;
-		mClipRect = new TRect(0, 0, width, ((Viewport)(ref viewport2)).Height);
+		mClipRect = new TRect(0, 0, GraphicsDevice.Viewport.Width, GraphicsDevice.Viewport.Height);
 		ClearClipRect();
-		base.mColor = Color.White;
+		mColor = Color.White;
 		mDrawMode = currentlyActiveDrawMode;
 		mColorizeImages = false;
 	}

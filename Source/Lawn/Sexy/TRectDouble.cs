@@ -87,7 +87,7 @@ public struct TRectDouble
 	public bool Intersects(TRectDouble theTRect)
 	{
 		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
-		return ((Rectangle)(ref mRect)).Intersects(theTRect.mRect);
+		return mRect.Intersects(theTRect.mRect);
 	}
 
 	public TRectDouble Intersection(TRectDouble theTRect)
@@ -114,66 +114,50 @@ public struct TRectDouble
 
 	public bool Contains(int theX, int theY)
 	{
-		return ((Rectangle)(ref mRect)).Contains(theX, theY);
+		return mRect.Contains(theX, theY);
 	}
 
 	public bool Contains(TPoint thePoint)
 	{
 		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
-		return ((Rectangle)(ref mRect)).Contains(thePoint.Point);
+		return mRect.Contains(thePoint.Point);
 	}
 
 	public void Offset(int theX, int theY)
 	{
-		((Rectangle)(ref mRect)).Offset(theX, theY);
+		mRect.Offset(theX, theY);
 	}
 
 	public void Offset(TPoint thePoint)
 	{
 		//IL_0008: Unknown result type (might be due to invalid IL or missing references)
-		((Rectangle)(ref mRect)).Offset(thePoint.Point);
+		mRect.Offset(thePoint.Point);
 	}
 
 	public TRectDouble Inflate(int theX, int theY)
 	{
-		((Rectangle)(ref mRect)).Inflate(theX, theY);
+		mRect.Inflate(theX, theY);
 		return this;
 	}
 
 	public static bool operator ==(TRectDouble a, TRectDouble b)
 	{
-		//IL_0015: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0021: Unknown result type (might be due to invalid IL or missing references)
-		if (object.ReferenceEquals(a, b) || object.ReferenceEquals(a.mRect, b.mRect))
-		{
-			return true;
-		}
-		if ((object)a == null || (object)b == null)
-		{
-			return false;
-		}
-		return ((object)(Rectangle)(ref a.mRect)).Equals((object)b);
+		return a.mRect.Equals(b);
 	}
 
 	public override bool Equals(object obj)
 	{
-		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0019: Unknown result type (might be due to invalid IL or missing references)
-		if (!(obj is TRectDouble tRectDouble))
-		{
-			return false;
-		}
-		return mRect == tRectDouble.mRect;
+		return obj is TRectDouble tRectDouble && mRect == tRectDouble.mRect;
 	}
 
 	public override int GetHashCode()
 	{
-		return ((object)(Rectangle)(ref mRect)).GetHashCode();
+		return mRect.GetHashCode();
 	}
 
 	public override string ToString()
 	{
-		return ((object)(Rectangle)(ref mRect)).ToString();
+		return mRect.ToString();
 	}
 
 	public static bool operator !=(TRectDouble a, TRectDouble b)

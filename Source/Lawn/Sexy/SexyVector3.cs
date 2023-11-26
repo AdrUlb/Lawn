@@ -111,13 +111,12 @@ internal struct SexyVector3
 
 	public SexyVector3 Normalize()
 	{
-		//IL_000c: Unknown result type (might be due to invalid IL or missing references)
-		((Vector3)(ref mVector)).Normalize();
+		mVector.Normalize();
 		return new SexyVector3(mVector);
 	}
 
 	public override string ToString()
 	{
-		return ((object)(Vector3)(ref mVector)).ToString();
+		return mVector.ToString();
 	}
 }

@@ -9,12 +9,10 @@ internal class InputController
 
 	public static void TestTouchCaps()
 	{
-		//IL_0000: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0005: Unknown result type (might be due to invalid IL or missing references)
 		TouchPanelCapabilities capabilities = TouchPanel.GetCapabilities();
-		if (((TouchPanelCapabilities)(ref capabilities)).IsConnected)
+		if (capabilities.IsConnected)
 		{
-			int maximumTouchCount = ((TouchPanelCapabilities)(ref capabilities)).MaximumTouchCount;
+			int maximumTouchCount = capabilities.MaximumTouchCount;
 			Debug.OutputDebug("maxPoints", maximumTouchCount);
 		}
 	}

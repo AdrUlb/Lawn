@@ -277,91 +277,53 @@ public class Main : Game
 
 	public void HandleInput(GameTime gameTime)
 	{
-		//IL_0009: Unknown result type (might be due to invalid IL or missing references)
-		//IL_000e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0011: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0016: Unknown result type (might be due to invalid IL or missing references)
-		//IL_001a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0020: Invalid comparison between Unknown and I4
-		//IL_0043: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0048: Unknown result type (might be due to invalid IL or missing references)
-		//IL_004d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0052: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0028: Unknown result type (might be due to invalid IL or missing references)
-		//IL_002d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0031: Unknown result type (might be due to invalid IL or missing references)
-		//IL_005b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0060: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0072: Unknown result type (might be due to invalid IL or missing references)
-		//IL_008a: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00a8: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00b4: Unknown result type (might be due to invalid IL or missing references)
-		//IL_016b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_016c: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f0: Unknown result type (might be due to invalid IL or missing references)
-		//IL_00f6: Invalid comparison between Unknown and I4
-		//IL_010d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0113: Invalid comparison between Unknown and I4
-		//IL_0125: Unknown result type (might be due to invalid IL or missing references)
-		//IL_012b: Invalid comparison between Unknown and I4
-		//IL_013d: Unknown result type (might be due to invalid IL or missing references)
 		if (LoadingScreen.IsLoading)
-		{
 			return;
-		}
-		GamePadState state = GamePad.GetState((PlayerIndex)0);
-		GamePadButtons buttons = ((GamePadState)(ref state)).Buttons;
-		if ((int)((GamePadButtons)(ref buttons)).Back == 1)
+
+		var state = GamePad.GetState(PlayerIndex.One);
+
+		var buttons = state.Buttons;
+
+		if (buttons.Back == ButtonState.Pressed)
 		{
-			GamePadButtons buttons2 = ((GamePadState)(ref previousGamepadState)).Buttons;
-			if ((int)((GamePadButtons)(ref buttons2)).Back == 0)
-			{
+			var buttons2 = previousGamepadState.Buttons;
+
+			if (buttons2.Back == ButtonState.Released)
 				GlobalStaticVars.gSexyAppBase.BackButtonPress();
-			}
 		}
+
 		TouchCollection state2 = TouchPanel.GetState();
 		bool flag = false;
-		Enumerator enumerator = ((TouchCollection)(ref state2)).GetEnumerator();
-		try
+		foreach (var current in state2)
 		{
-			TouchLocation val = default(TouchLocation);
-			while (((Enumerator)(ref enumerator)).MoveNext())
+			var touch = new _Touch();
+			touch.location.mX = current.Position.X;
+			touch.location.mY = current.Position.Y;
+
+			touch.previousLocation = current.TryGetPreviousLocation(out var previousLocation)
+				? new CGPoint(previousLocation.Position.X, previousLocation.Position.Y)
+				: touch.location;
+
+			touch.timestamp = gameTime.TotalGameTime.TotalSeconds;
+			switch (current.State)
 			{
-				TouchLocation current = ((Enumerator)(ref enumerator)).Current;
-				_Touch touch = default(_Touch);
-				touch.location.mX = ((TouchLocation)(ref current)).Position.X;
-				touch.location.mY = ((TouchLocation)(ref current)).Position.Y;
-				if (((TouchLocation)(ref current)).TryGetPreviousLocation(ref val))
-				{
-					touch.previousLocation = new CGPoint(((TouchLocation)(ref val)).Position.X, ((TouchLocation)(ref val)).Position.Y);
-				}
-				else
-				{
-					touch.previousLocation = touch.location;
-				}
-				touch.timestamp = gameTime.TotalGameTime.TotalSeconds;
-				if ((int)((TouchLocation)(ref current)).State == 2 && !flag)
-				{
-					GlobalStaticVars.gSexyAppBase.TouchBegan(touch);
-					flag = true;
-				}
-				else if ((int)((TouchLocation)(ref current)).State == 3)
-				{
+				case TouchLocationState.Pressed:
+					if (!flag)
+					{
+						GlobalStaticVars.gSexyAppBase.TouchBegan(touch);
+						flag = true;
+					}
+					break;
+				case TouchLocationState.Moved:
 					GlobalStaticVars.gSexyAppBase.TouchMoved(touch);
-				}
-				else if ((int)((TouchLocation)(ref current)).State == 1)
-				{
+					break;
+				case TouchLocationState.Released:
 					GlobalStaticVars.gSexyAppBase.TouchEnded(touch);
-				}
-				else if ((int)((TouchLocation)(ref current)).State == 0)
-				{
+					break;
+				case TouchLocationState.Invalid:
 					GlobalStaticVars.gSexyAppBase.TouchesCanceled();
-				}
+					break;
 			}
-		}
-		finally
-		{
-			((IDisposable)(Enumerator)(ref enumerator)).Dispose();
 		}
 		previousGamepadState = state;
 	}
@@ -377,7 +339,7 @@ public class Main : Game
 				GlobalStaticVars.gSexyAppBase.mMusicInterface.ResumeMusic();
 			}
 		}
-		((Game)this).OnActivated(sender, args);
+		base.OnActivated(sender, args);
 	}
 
 	protected override void OnDeactivated(object sender, EventArgs args)
@@ -388,7 +350,7 @@ public class Main : Game
 			GlobalStaticVars.gSexyAppBase.mMusicInterface.PauseMusic();
 		}
 		GlobalStaticVars.gSexyAppBase.AppEnteredBackground();
-		((Game)this).OnDeactivated(sender, args);
+		base.OnDeactivated(sender, args);
 	}
 
 	private void GameSpecificCheatInputCheck()

@@ -98,7 +98,7 @@ public struct TPointFloat
 
 	public override int GetHashCode()
 	{
-		return ((object)(Vector2)(ref mPoint)).GetHashCode();
+		return mPoint.GetHashCode();
 	}
 
 	public static TPointFloat operator +(TPointFloat a, TPointFloat b)
@@ -133,6 +133,6 @@ public struct TPointFloat
 
 	public override string ToString()
 	{
-		return ((object)(Vector2)(ref mPoint)).ToString();
+		return mPoint.ToString();
 	}
 }

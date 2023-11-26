@@ -376,25 +376,17 @@ internal class Reanimation
 		SexyColor mTrackColor = reanimatorTrackInstance.mTrackColor;
 		if (!reanimatorTrackInstance.mIgnoreColorOverride)
 		{
-			((Color)(ref mTrackColor.Color)).R = (byte)((float)(mColorOverride.mRed * mTrackColor.mRed) / 255f);
-			((Color)(ref mTrackColor.Color)).G = (byte)((float)(mColorOverride.mGreen * mTrackColor.mGreen) / 255f);
-			((Color)(ref mTrackColor.Color)).B = (byte)((float)(mColorOverride.mBlue * mTrackColor.mBlue) / 255f);
-			((Color)(ref mTrackColor.Color)).A = (byte)((float)(mColorOverride.mAlpha * mTrackColor.mAlpha) / 255f);
+			mTrackColor.Color.R = (byte)(mColorOverride.mRed * mTrackColor.mRed / 255f);
+			mTrackColor.Color.G = (byte)(mColorOverride.mGreen * mTrackColor.mGreen / 255f);
+			mTrackColor.Color.B = (byte)(mColorOverride.mBlue * mTrackColor.mBlue / 255f);
+			mTrackColor.Color.A = (byte)(mColorOverride.mAlpha * mTrackColor.mAlpha / 255f);
 		}
 		if (g.mColorizeImages)
 		{
-			ref Color color = ref mTrackColor.Color;
-			Color mColor = g.mColor;
-			((Color)(ref color)).R = (byte)((float)(((Color)(ref mColor)).R * mTrackColor.mRed) / 255f);
-			ref Color color2 = ref mTrackColor.Color;
-			Color mColor2 = g.mColor;
-			((Color)(ref color2)).G = (byte)((float)(((Color)(ref mColor2)).G * mTrackColor.mGreen) / 255f);
-			ref Color color3 = ref mTrackColor.Color;
-			Color mColor3 = g.mColor;
-			((Color)(ref color3)).B = (byte)((float)(((Color)(ref mColor3)).B * mTrackColor.mBlue) / 255f);
-			ref Color color4 = ref mTrackColor.Color;
-			Color mColor4 = g.mColor;
-			((Color)(ref color4)).A = (byte)((float)(((Color)(ref mColor4)).A * mTrackColor.mAlpha) / 255f);
+			mTrackColor.Color.R = (byte)(g.mColor.R * mTrackColor.mRed / 255f);
+			mTrackColor.Color.G = (byte)(g.mColor.G * mTrackColor.mGreen / 255f);
+			mTrackColor.Color.B = (byte)(g.mColor.B * mTrackColor.mBlue / 255f);
+			mTrackColor.Color.A = (byte)(g.mColor.A * mTrackColor.mAlpha / 255f);
 		}
 		int num2 = TodCommon.ClampInt((int)(aTransformCurrent.mAlpha * (float)mTrackColor.mAlpha + 0.5f), 0, 255);
 		if (num2 <= 0)
@@ -807,7 +799,7 @@ internal class Reanimation
 	public void SetPosition(float theX, float theY)
 	{
 		//IL_0012: Unknown result type (might be due to invalid IL or missing references)
-		((Matrix)(ref mOverlayMatrix.mMatrix)).Translation = new Vector3(theX, theY, 0f);
+		mOverlayMatrix.mMatrix.Translation = new Vector3(theX, theY, 0f);
 	}
 
 	public void OverrideScale(float theScaleX, float theScaleY)
