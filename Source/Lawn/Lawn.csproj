@@ -11,6 +11,7 @@
 		<Company>PopCap Games International</Company>
 		<Copyright>Copyright © PopCap Games International 2011</Copyright>
 		<AssemblyVersion>0.13.0.0</AssemblyVersion>
+		<OutputType>Exe</OutputType>
 	</PropertyGroup>
 
 	<ItemGroup>

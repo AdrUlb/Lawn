@@ -50,8 +50,15 @@ internal class XNAMusicInterface : MusicInterface
 
 	public override bool LoadMusic(int theSongId, string theFileName)
 	{
-		mSongs[theSongId] = mContent.Load<Song>(theFileName);
-		return true;
+		try
+		{
+			mSongs[theSongId] = mContent.Load<Song>(theFileName);
+			return true;
+		}
+		catch
+		{
+			return false;
+		}
 	}
 
 	public override void PlayMusic(int theSongid, int offset, float fadeOutSeconds, float fadeinSeconds, bool loop)
