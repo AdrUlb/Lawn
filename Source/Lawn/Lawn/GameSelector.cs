@@ -631,7 +631,7 @@ internal class GameSelector : Widget, ButtonListener, StoreListener, AlmanacList
 			{
 				woodSignY = 0f;
 			}
-			reanimation.SetPosition(((Matrix)(ref reanimation.mOverlayMatrix.mMatrix)).Translation.X, woodSignY);
+			reanimation.SetPosition(reanimation.mOverlayMatrix.mMatrix.Translation.X, woodSignY);
 		}
 		reanimation.Update();
 		if (mFadeInCounter > 0)

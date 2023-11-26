@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<AssemblyName>FNA.NetStub</AssemblyName>
+		<Copyright>Copyright (c) 2019</Copyright>
+		<Product>$(AssemblyName)</Product>
+		<Description>XNA4 Xbox Live Stub DLL</Description>
+		<Company>Ethan "flibitijibibo" Lee</Company>
+	</PropertyGroup>
+	<ItemGroup>
+	  <ProjectReference Include="..\FNA\FNA.Core.csproj" />
+	</ItemGroup>
+</Project>

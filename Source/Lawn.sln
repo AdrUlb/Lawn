@@ -5,6 +5,10 @@ VisualStudioVersion = 17.9.34310.174
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Lawn", "Lawn\Lawn.csproj", "{00B326F8-FCA1-4570-BFDD-2BDF7F47345E}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FNA.NetStub", "FNA.NetStub\FNA.NetStub.csproj", "{9FE64AA3-70E5-4EC3-BA30-39F5E6ED4695}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FNA.Core", "FNA\FNA.Core.csproj", "{D838CD04-24C4-40A9-974A-3D79C7ABAC22}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +19,14 @@ Global
 		{00B326F8-FCA1-4570-BFDD-2BDF7F47345E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{00B326F8-FCA1-4570-BFDD-2BDF7F47345E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{00B326F8-FCA1-4570-BFDD-2BDF7F47345E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9FE64AA3-70E5-4EC3-BA30-39F5E6ED4695}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9FE64AA3-70E5-4EC3-BA30-39F5E6ED4695}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9FE64AA3-70E5-4EC3-BA30-39F5E6ED4695}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9FE64AA3-70E5-4EC3-BA30-39F5E6ED4695}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D838CD04-24C4-40A9-974A-3D79C7ABAC22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D838CD04-24C4-40A9-974A-3D79C7ABAC22}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D838CD04-24C4-40A9-974A-3D79C7ABAC22}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D838CD04-24C4-40A9-974A-3D79C7ABAC22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
