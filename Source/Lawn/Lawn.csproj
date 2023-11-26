@@ -1,34 +1,15 @@
 <Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <AssemblyName>LAWN</AssemblyName>
-    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
-    <TargetFramework>net20</TargetFramework>
-  </PropertyGroup>
-  <PropertyGroup>
-    <LangVersion>11.0</LangVersion>
-    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
-  </PropertyGroup>
-  <PropertyGroup>
-    <RootNamespace />
-  </PropertyGroup>
-  <ItemGroup>
-    <None Remove="Microsoft.Xna.Framework.RuntimeProfile" />
-    <None Remove="Microsoft.Xna.Framework.XlastConfiguration" />
-    <EmbeddedResource Include="Microsoft.Xna.Framework.RuntimeProfile" LogicalName="Microsoft.Xna.Framework.RuntimeProfile" />
-    <EmbeddedResource Include="Microsoft.Xna.Framework.XlastConfiguration" LogicalName="Microsoft.Xna.Framework.XlastConfiguration" />
-  </ItemGroup>
-  <ItemGroup>
-    <Reference Include="Microsoft.Xna.Framework" />
-    <Reference Include="Microsoft.Xna.Framework.Game" />
-    <Reference Include="Microsoft.Xna.Framework.GamerServices" />
-    <Reference Include="Microsoft.Xna.Framework.Graphics" />
-    <Reference Include="Microsoft.Phone" />
-    <Reference Include="System.Core">
-      <HintPath>C:\WINDOWS\Microsoft.NET\Framework64\v4.0.30319\System.Core.dll</HintPath>
-    </Reference>
-    <Reference Include="System.Xml">
-      <HintPath>C:\WINDOWS\Microsoft.NET\Framework64\v4.0.30319\System.Xml.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Xna.Framework.Input.Touch" />
-  </ItemGroup>
+	<PropertyGroup>
+		<TargetFramework>net8.0</TargetFramework>
+		<LangVersion>11.0</LangVersion>
+		<AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+	</PropertyGroup>
+
+	<PropertyGroup>
+		<Title>Plants vs. Zombies</Title>
+		<Product>LAWN</Product>
+		<Company>PopCap Games International</Company>
+		<Copyright>Copyright © PopCap Games International 2011</Copyright>
+		<AssemblyVersion>0.13.0.0</AssemblyVersion>
+	</PropertyGroup>
 </Project>
