@@ -2,8 +2,8 @@ using System;
 using System.Collections.ObjectModel;
 using System.Globalization;
 using Lawn;
-using Microsoft.Phone.Info;
-using Microsoft.Phone.Shell;
+//using Microsoft.Phone.Info;
+//using Microsoft.Phone.Shell;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Graphics;
@@ -40,15 +40,15 @@ public class Main : Game
 	{
 		get
 		{
-			//IL_0005: Unknown result type (might be due to invalid IL or missing references)
-			//IL_000b: Invalid comparison between Unknown and I4
-			return (int)PhoneApplicationService.Current.ApplicationIdleDetectionMode == 1;
+			// FIXME: Windows Phone stuff
+			return true;//(int)PhoneApplicationService.Current.ApplicationIdleDetectionMode == 1;
 		}
 		set
 		{
 			try
 			{
-				PhoneApplicationService.Current.ApplicationIdleDetectionMode = (IdleDetectionMode)(value ? 1 : 0);
+				// FIXME: Windows Phone stuff
+				//PhoneApplicationService.Current.ApplicationIdleDetectionMode = (IdleDetectionMode)(value ? 1 : 0);
 			}
 			catch
 			{
@@ -77,15 +77,18 @@ public class Main : Game
 		GraphicsState.mGraphicsDeviceManager.DeviceCreated += graphics_DeviceCreated;
 		GraphicsState.mGraphicsDeviceManager.DeviceReset += graphics_DeviceReset;
 		GraphicsState.mGraphicsDeviceManager.PreparingDeviceSettings += mGraphicsDeviceManager_PreparingDeviceSettings;
-		((Game)this).TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 30.0);
+		TargetElapsedTime = TimeSpan.FromSeconds(1.0 / 30.0);
 		((Game)this).Exiting += Main_Exiting;
-		PhoneApplicationService.Current.UserIdleDetectionMode = (IdleDetectionMode)0;
+		// FIXME: Windows Phone stuff
+		/*PhoneApplicationService.Current.UserIdleDetectionMode = (IdleDetectionMode)0;
 		PhoneApplicationService.Current.Launching += Game_Launching;
 		PhoneApplicationService.Current.Activated += Game_Activated;
 		PhoneApplicationService.Current.Closing += Current_Closing;
-		PhoneApplicationService.Current.Deactivated += Current_Deactivated;
+		PhoneApplicationService.Current.Deactivated += Current_Deactivated;*/
 	}
 
+	// FIXME: Windows Phone stuff
+	/*
 	private void Current_Deactivated(object sender, DeactivatedEventArgs e)
 	{
 		GlobalStaticVars.gSexyAppBase.Tombstoned();
@@ -103,7 +106,7 @@ public class Main : Game
 	private void Game_Launching(object sender, LaunchingEventArgs e)
 	{
 		PhoneApplicationService.Current.State.Clear();
-	}
+	}*/
 
 	private static void SetupTileSchedule()
 	{
@@ -119,7 +122,7 @@ public class Main : Game
 
 	private void graphics_DeviceCreated(object sender, EventArgs e)
 	{
-		((Game)this).GraphicsDevice.PresentationParameters.PresentationInterval = (PresentInterval)3;
+		GraphicsDevice.PresentationParameters.PresentationInterval = (PresentInterval)3;
 	}
 
 	private void Main_Exiting(object sender, EventArgs e)
@@ -131,10 +134,10 @@ public class Main : Game
 	{
 		//IL_0018: Unknown result type (might be due to invalid IL or missing references)
 		//IL_0022: Expected O, but got Unknown
-		((Game)this).Window.OrientationChanged += Window_OrientationChanged;
+		Window.OrientationChanged += Window_OrientationChanged;
 		GamerServicesComp = new GamerServicesComponent((Game)(object)this);
 		ReportAchievement.Initialise();
-		((Game)this).Initialize();
+		base.Initialize();
 	}
 
 	protected override void LoadContent()
@@ -153,23 +156,23 @@ public class Main : Game
 
 	protected override void BeginRun()
 	{
-		((Game)this).BeginRun();
+		base.BeginRun();
 	}
 
 	public void CompensateForSlowUpdate()
 	{
-		((Game)this).ResetElapsedTime();
+		base.ResetElapsedTime();
 	}
 
 	protected override void Update(GameTime gameTime)
 	{
-		if (!((Game)this).IsActive)
+		if (!IsActive)
 		{
 			return;
 		}
 		if (GlobalStaticVars.gSexyAppBase.WantsToExit)
 		{
-			((Game)this).Exit();
+			Exit();
 		}
 		HandleInput(gameTime);
 		GlobalStaticVars.gSexyAppBase.UpdateApp();
@@ -186,7 +189,7 @@ public class Main : Game
 		}
 		try
 		{
-			((Game)this).Update(gameTime);
+			base.Update(gameTime);
 		}
 		catch (GameUpdateRequiredException)
 		{
@@ -196,9 +199,9 @@ public class Main : Game
 
 	private static void SetLowMem()
 	{
-		object obj = default(object);
-		DeviceExtendedProperties.TryGetValue("DeviceTotalMemory", ref obj);
-		DO_LOW_MEMORY_OPTIONS = (LOW_MEMORY_DEVICE = (long)obj / 1024 / 1024 <= 256);
+		// FIXME: Windows Phone stuff
+		//DeviceExtendedProperties.TryGetValue("DeviceTotalMemory", out var obj);
+		DO_LOW_MEMORY_OPTIONS = false;//(LOW_MEMORY_DEVICE = (long)obj / 1024 / 1024 <= 256);
 		LOW_MEMORY_DEVICE = false;
 	}
 
@@ -243,20 +246,12 @@ public class Main : Game
 
 	private void SetupInterfaceOrientation()
 	{
-		//IL_000d: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0013: Invalid comparison between Unknown and I4
-		//IL_001b: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0021: Invalid comparison between Unknown and I4
 		if (GlobalStaticVars.gSexyAppBase != null)
 		{
-			if ((int)((Game)this).Window.CurrentOrientation == 1 || (int)((Game)this).Window.CurrentOrientation == 2)
-			{
+			if (Window.CurrentOrientation == DisplayOrientation.LandscapeLeft || Window.CurrentOrientation == DisplayOrientation.LandscapeRight)
 				GlobalStaticVars.gSexyAppBase.InterfaceOrientationChanged(UI_ORIENTATION.UI_ORIENTATION_LANDSCAPE_LEFT);
-			}
 			else
-			{
 				GlobalStaticVars.gSexyAppBase.InterfaceOrientationChanged(UI_ORIENTATION.UI_ORIENTATION_PORTRAIT);
-			}
 		}
 	}
 
@@ -269,9 +264,9 @@ public class Main : Game
 		}
 		lock (ResourceManager.DrawLocker)
 		{
-			((Game)this).GraphicsDevice.Clear(Color.Black);
+			GraphicsDevice.Clear(Color.Black);
 			GlobalStaticVars.gSexyAppBase.DrawGame(gameTime);
-			((Game)this).Draw(gameTime);
+			base.Draw(gameTime);
 		}
 	}
 

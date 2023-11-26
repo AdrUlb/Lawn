@@ -1,7 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading;
-using Microsoft.Phone.Tasks;
+//using Microsoft.Phone.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.GamerServices;
 using Microsoft.Xna.Framework.Media;
@@ -1135,20 +1135,20 @@ internal class LawnApp : SexyAppBase
 
 	private void GameUpdateMessageClosed(IAsyncResult result)
 	{
-		//IL_002e: Unknown result type (might be due to invalid IL or missing references)
-		//IL_0034: Expected O, but got Unknown
 		int? num = Guide.EndShowMessageBox(result);
 		int? num2 = num;
 		if (num2.GetValueOrDefault() == 0 && num2.HasValue)
 		{
 			if (Main.IsInTrialMode)
 			{
-				Guide.ShowMarketplace((PlayerIndex)0);
+				Guide.ShowMarketplace(PlayerIndex.One);
 				return;
 			}
-			MarketplaceDetailTask val = new MarketplaceDetailTask();
+
+			// FIXME: Windows Phone stuff
+			/*MarketplaceDetailTask val = new MarketplaceDetailTask();
 			val.ContentType = (MarketplaceContentType)1;
-			val.Show();
+			val.Show();*/
 		}
 		else
 		{

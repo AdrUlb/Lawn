@@ -663,7 +663,7 @@ internal class Reanimation
 		float mTransY = aTransformCurrent.mTransY;
 		aTransformCurrent.PrepareForReuse();
 		GetTrackBasePoseMatrix(theTrackIndex, out basePose);
-		Matrix.Invert(ref basePose.mMatrix, ref aBasePoseMatrix);
+		Matrix.Invert(ref basePose.mMatrix, out aBasePoseMatrix);
 		theOverlayMatrix = identity;
 		tempOverlayMatrix = new Matrix
 		{
@@ -889,11 +889,11 @@ internal class Reanimation
 		{
 			int celWidth = image.GetCelWidth();
 			int celHeight = image.GetCelHeight();
-			Matrix.CreateTranslation((float)celWidth * 0.5f, (float)celHeight * 0.5f, 0f, ref tempMatrix);
+			Matrix.CreateTranslation(celWidth * 0.5f, celHeight * 0.5f, 0f, out tempMatrix);
 		}
 		else if (aTransformCurrent.mFont != null && !string.IsNullOrEmpty(aTransformCurrent.mText))
 		{
-			Matrix.CreateTranslation(0f, (float)aTransformCurrent.mFont.mAscent, 0f, ref tempMatrix);
+			Matrix.CreateTranslation(0f, (float)aTransformCurrent.mFont.mAscent, 0f, out tempMatrix);
 		}
 		SexyTransform2D sexyTransform2D = default(SexyTransform2D);
 		MatrixFromTransform(aTransformCurrent, out sexyTransform2D.mMatrix);
@@ -929,11 +929,11 @@ internal class Reanimation
 		{
 			int celWidth = image.GetCelWidth();
 			int celHeight = image.GetCelHeight();
-			Matrix.CreateTranslation((float)celWidth * 0.5f, (float)celHeight * 0.5f, 0f, ref tempMatrix);
+			Matrix.CreateTranslation(celWidth * 0.5f, celHeight * 0.5f, 0f, out tempMatrix);
 		}
 		else if (aTransformCurrent.mFont != null && !string.IsNullOrEmpty(aTransformCurrent.mText))
 		{
-			Matrix.CreateTranslation(0f, (float)aTransformCurrent.mFont.mAscent, 0f, ref tempMatrix);
+			Matrix.CreateTranslation(0f, aTransformCurrent.mFont.mAscent, 0f, out tempMatrix);
 		}
 		SexyTransform2D sexyTransform2D = default(SexyTransform2D);
 		MatrixFromTransform(aTransformCurrent, out sexyTransform2D.mMatrix);

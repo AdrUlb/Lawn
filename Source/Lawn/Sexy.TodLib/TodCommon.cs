@@ -836,7 +836,7 @@ internal static class TodCommon
 
 	public static void SexyMatrix3Inverse(ref Matrix mat, out Matrix r)
 	{
-		Matrix.Invert(ref mat, ref r);
+		Matrix.Invert(ref mat, out r);
 	}
 
 	public static void SexyMatrix3ExtractScale(Matrix m, ref float theScaleX, ref float theScaleY)

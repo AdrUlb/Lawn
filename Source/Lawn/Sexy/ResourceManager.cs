@@ -120,7 +120,7 @@ internal class ResourceManager : IDisposable
 		blendColorLoadState = val2;
 		loadedBackdrop = -1;
 		unloadableResources = new List<BaseRes>();
-		base._002Ector();
+
 		mApp = theApp;
 		mHasFailed = false;
 		mXMLParser = null;

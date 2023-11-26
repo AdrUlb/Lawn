@@ -69,7 +69,7 @@ internal struct SexyVector3
 		//IL_0002: Unknown result type (might be due to invalid IL or missing references)
 		//IL_001c: Unknown result type (might be due to invalid IL or missing references)
 		Vector3 theVector = default(Vector3);
-		Vector3.Cross(ref mVector, ref v.mVector, ref theVector);
+		Vector3.Cross(ref mVector, ref v.mVector, out theVector);
 		return new SexyVector3(theVector);
 	}
 

@@ -104,7 +104,7 @@ internal class PrimitiveBatch : IDisposable
 		RasterizerState val = new RasterizerState();
 		val.CullMode = (CullMode)0;
 		rasterizerState = val;
-		base._002Ector();
+
 		if (graphicsDevice == null)
 		{
 			throw new ArgumentNullException("graphicsDevice");
@@ -363,7 +363,7 @@ internal class PrimitiveBatch : IDisposable
 		vertex.Y += (float)OffsetY;
 		if (mHasTransform)
 		{
-			Vector2.Transform(ref vertex, ref Transform, ref vertex);
+			Vector2.Transform(ref vertex, ref Transform, out vertex);
 		}
 		if (texture == null)
 		{
@@ -401,7 +401,7 @@ internal class PrimitiveBatch : IDisposable
 		position2.Y += (float)OffsetY;
 		if (mHasTransform)
 		{
-			Vector3.Transform(ref vertex.Position, ref Transform, ref vertex.Position);
+			Vector3.Transform(ref vertex.Position, ref Transform, out vertex.Position);
 		}
 		ref Vector3 position3 = ref vertex.Position;
 		position3.X -= 0.5f;

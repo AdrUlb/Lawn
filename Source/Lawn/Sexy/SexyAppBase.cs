@@ -4,8 +4,8 @@ using System.IO;
 using System.IO.IsolatedStorage;
 using System.Linq;
 using System.Threading;
-using Microsoft.Devices;
-using Microsoft.Phone.Tasks;
+//using Microsoft.Devices;
+//using Microsoft.Phone.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Content;
 using Microsoft.Xna.Framework.GamerServices;
@@ -103,7 +103,8 @@ internal class SexyAppBase : SexyAppBaseInterface, ButtonListener, DialogListene
 
 	private static Random rand = new Random(DateTime.UtcNow.Millisecond);
 
-	public static MediaPlayerLauncher VideoPlayer = new MediaPlayerLauncher();
+	// FIXME: Video playback
+	//public static MediaPlayerLauncher VideoPlayer = new MediaPlayerLauncher();
 
 	protected bool wantToShowUpdateMessage;
 
@@ -825,8 +826,9 @@ internal class SexyAppBase : SexyAppBaseInterface, ButtonListener, DialogListene
 
 	public void DoVibration()
 	{
-		VibrateController @default = VibrateController.Default;
-		@default.Start(TimeSpan.FromMilliseconds(500.0));
+		// FIXME: Windows Phone stuff
+		//VibrateController @default = VibrateController.Default;
+		//@default.Start(TimeSpan.FromMilliseconds(500.0));
 	}
 
 	public virtual void Shutdown()
@@ -880,10 +882,11 @@ internal class SexyAppBase : SexyAppBaseInterface, ButtonListener, DialogListene
 		{
 			if (video == VideoType.Credits)
 			{
-				VideoPlayer.Media = new Uri("Content/video/credits.wmv", UriKind.Relative);
+				// FIXME: Video playback
+				/*VideoPlayer.Media = new Uri("Content/video/credits.wmv", UriKind.Relative);
 				VideoPlayer.Location = (MediaLocationType)1;
 				VideoPlayer.Controls = (MediaPlaybackControls)31;
-				VideoPlayer.Show();
+				VideoPlayer.Show();*/
 			}
 		}
 		catch (Exception ex)
